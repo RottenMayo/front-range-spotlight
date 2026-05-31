@@ -154,7 +154,7 @@ function PublicSite({ config, onLead, onDashboard }) {
   return (
     <div>
       {/* HERO */}
-      <section style={{ position: "relative", overflow: "hidden", color: PAPER, padding: "0 0 0 0", backgroundImage: "url('/hero-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <section style={{ position: "relative", overflow: "hidden", color: PAPER, padding: "0 0 0 0", backgroundImage: "url('./hero-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div style={{ position: "absolute", inset: 0, background: "rgba(46,64,52,0.72)" }} />
         <div style={{ maxWidth: 1080, margin: "0 auto", padding: "70px 24px 90px", position: "relative", zIndex: 2 }}>
           <div className="rise" style={{ display: "inline-block", border: `1.5px solid ${ACCENT}`, color: ACCENT, padding: "5px 13px", borderRadius: 20, fontSize: 12.5, letterSpacing: 1.5, textTransform: "uppercase", fontWeight: 600, marginBottom: 22 }}>
@@ -386,7 +386,7 @@ function GoldenMap() {
   return (
     <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid #E4DAC6", minWidth: 260 }}>
       <img
-        src="/golden-map.png"
+        src="./golden-map.png"
         alt="Golden, CO target area map"
         style={{ width: "100%", display: "block" }}
       />
@@ -456,18 +456,17 @@ function Dashboard({ config, leads, analytics, updateLead, updateConfig, onSite 
     return (
       <div style={{ maxWidth: 380, margin: "80px auto", padding: "0 24px", textAlign: "center" }}>
         <div style={{ fontFamily: displayStack, fontSize: 30, fontWeight: 700, marginBottom: 8 }}>Operator Login</div>
-        <p style={{ color: "#6f6453", fontSize: 14.5, marginBottom: 24 }}>Demo passcode: <code style={{ background: "#EFE7D7", padding: "2px 6px", borderRadius: 4 }}>golden</code></p>
         <input
           className="ghg-input"
           type="password"
           placeholder="Passcode"
           value={pass}
           onChange={(e) => setPass(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && pass === "golden" && setAuthed(true)}
+          onKeyDown={(e) => e.key === "Enter" && pass === import.meta.env.VITE_OPERATOR_PASS && setAuthed(true)}
         />
         <button
           className="ghg-btn"
-          onClick={() => pass === "golden" && setAuthed(true)}
+          onClick={() => pass === import.meta.env.VITE_OPERATOR_PASS && setAuthed(true)}
           style={{ background: ACCENT, color: INK, padding: "13px", borderRadius: 10, fontSize: 16, marginTop: 14, width: "100%" }}
         >
           Enter dashboard
