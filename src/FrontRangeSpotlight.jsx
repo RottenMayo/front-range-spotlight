@@ -15,7 +15,7 @@ const PAPER = "#F4EEE3";
 const PINE = "#2E4034";
 
 const DEFAULT_CONFIG = {
-  businessName: "Golden Spotlight",
+  businessName: "Front Range Spotlight",
   cardName: "Golden Spotlight",
   pricePerSlot: 500,
   targetZips: ["80401", "80403"],
