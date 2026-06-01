@@ -28,18 +28,18 @@ const DEFAULT_CONFIG = {
   canvaUrl: "",
 };
 
-// ---- storage helpers (safe) ----
+// ---- storage helpers (localStorage) ----
 async function loadKey(key, fallback) {
   try {
-    const res = await window.storage.get(key, true);
-    return res ? JSON.parse(res.value) : fallback;
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
   } catch {
     return fallback;
   }
 }
 async function saveKey(key, value) {
   try {
-    await window.storage.set(key, JSON.stringify(value), true);
+    localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
     console.error("save failed", e);
   }
