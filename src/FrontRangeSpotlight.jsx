@@ -323,9 +323,9 @@ const EXAMPLE_CANVA_URL = "https://www.canva.com/design/DAHLRoSLOFw/_5KwUBOPjCdU
 
 // ---- Card preview — tabs for slot grid, current card, and example card ----
 function CardPreview({ config }) {
-  const [tab, setTab] = useState("slots");
+  const [tab, setTab] = useState("example");
 
-  const tabs = [["slots", "Available Slots"]];
+  const tabs = [];
   if (config.canvaUrl) tabs.push(["current", "Current Card"]);
   tabs.push(["example", "Example"]);
 
@@ -351,44 +351,6 @@ function CardPreview({ config }) {
           </button>
         ))}
       </div>
-
-      {tab === "slots" && (
-        <div style={{ maxWidth: 560, margin: "0 auto", aspectRatio: "3 / 4", background: "#fff", borderRadius: 8, boxShadow: "0 24px 60px rgba(33,28,22,.22)", overflow: "hidden", border: "1px solid #e0d6c2" }}>
-          <div style={{ height: "100%", padding: "26px 24px", display: "flex", flexDirection: "column" }}>
-            <div style={{ textAlign: "center", marginBottom: 16 }}>
-              <div style={{ fontFamily: displayStack, fontSize: 22, fontWeight: 700, color: PINE }}>Your Golden Home Pros</div>
-              <div style={{ fontSize: 11.5, color: "#9a8e78", marginTop: 2 }}>One trusted business per category</div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 9, flex: 1 }}>
-              {config.slots.map((slot) => (
-                <div
-                  key={slot.id}
-                  style={{
-                    border: `1.5px ${slot.status === "sold" ? "solid" : "dashed"} ${slot.status === "sold" ? PINE : "#cdbfa3"}`,
-                    borderRadius: 8,
-                    padding: "10px 11px",
-                    background: slot.status === "sold" ? "#f1ede3" : "#fff",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    minHeight: 58,
-                  }}
-                >
-                  <div style={{ fontSize: 10.5, color: "#8a7e6a", textTransform: "uppercase", letterSpacing: 0.4, marginBottom: 3 }}>Slot {slot.id}</div>
-                  {slot.status === "sold" ? (
-                    <div style={{ fontSize: 13.5, fontWeight: 700, color: PINE }}>{slot.business || "Reserved"}</div>
-                  ) : (
-                    <div style={{ fontSize: 11.5, fontWeight: 600, color: ACCENT }}>○ Available</div>
-                  )}
-                </div>
-              ))}
-            </div>
-            <div style={{ textAlign: "center", marginTop: 14, fontSize: 10.5, color: "#9a8e78" }}>
-              Scan the QR on your card · {config.targetZips.join(" · ")}
-            </div>
-          </div>
-        </div>
-      )}
 
       {tab === "current" && config.canvaUrl && (
         <iframe
