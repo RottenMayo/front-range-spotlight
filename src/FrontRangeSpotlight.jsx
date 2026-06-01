@@ -319,15 +319,14 @@ function canvaEmbedUrl(url) {
   return `${withView}?embed`;
 }
 
-const EXAMPLE_CANVA_URL = "https://www.canva.com/design/DAHLRuxhGlU/fayguukGiFIjyhmXwNkSNg/view";
+const CURRENT_CARD_URL = "https://www.canva.com/design/DAHLRuxhGlU/fayguukGiFIjyhmXwNkSNg/view";
+const EXAMPLE_CANVA_URL = "https://www.canva.com/design/DAHLRoSLOFw/_5KwUBOPjCdUEUhBm6uafg/view";
 
 // ---- Card preview — tabs for slot grid, current card, and example card ----
 function CardPreview({ config }) {
   const [tab, setTab] = useState("example");
 
-  const tabs = [];
-  if (config.canvaUrl) tabs.push(["current", "Current Card"]);
-  tabs.push(["example", "Example"]);
+  const tabs = [["current", "Current Card"], ["example", "Example"]];
 
   return (
     <div style={{ maxWidth: 760, margin: "0 auto" }}>
@@ -352,9 +351,9 @@ function CardPreview({ config }) {
         ))}
       </div>
 
-      {tab === "current" && config.canvaUrl && (
+      {tab === "current" && (
         <iframe
-          src={canvaEmbedUrl(config.canvaUrl)}
+          src={canvaEmbedUrl(CURRENT_CARD_URL)}
           style={{
             width: "100%",
             height: 500,
