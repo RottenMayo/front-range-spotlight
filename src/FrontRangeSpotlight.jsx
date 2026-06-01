@@ -319,7 +319,7 @@ function canvaEmbedUrl(url) {
   return `${withView}?embed`;
 }
 
-const EXAMPLE_CANVA_URL = "https://www.canva.com/design/DAHLRoSLOFw/_5KwUBOPjCdUEUhBm6uafg/view";
+const EXAMPLE_CANVA_URL = "https://www.canva.com/design/DAHLRuxhGlU/fayguukGiFIjyhmXwNkSNg/view";
 
 // ---- Card preview — tabs for slot grid, current card, and example card ----
 function CardPreview({ config }) {
