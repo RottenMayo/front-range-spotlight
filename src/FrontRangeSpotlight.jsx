@@ -191,7 +191,7 @@ function PublicSite({ config, onLead, onDashboard }) {
           Online ads get scrolled past and forgotten. A card on the fridge waits for the exact moment a homeowner needs you.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
-          <Feature title="Category exclusivity" body="Only one HVAC company. One landscaper. One detailer. You own your category on the card — no bidding war against eight competitors." />
+          <Feature title="Category exclusivity" body="Only one HVAC company. One landscaper. One detailer. You own your category on the card — no bidding war against competitors." />
           <Feature title="It stays in the home" body="Direct mail sits on counters and fridges for weeks. When the furnace dies in January, your card is right there." />
           <Feature title="Real Golden homeowners" body={`Mailed to owner-occupied homes across 80401 and 80403 — roughly ${config.ownerOccupied}% owner-occupied, the people who actually pay for home services.`} />
           <Feature title="You'll know it worked" body="Every card carries a QR code to track how many Golden homeowners reached out." />
@@ -321,14 +321,18 @@ function canvaEmbedUrl(url) {
 
 const EXAMPLE_CANVA_URL = "https://www.canva.com/design/DAHLRoSLOFw/_5KwUBOPjCdUEUhBm6uafg/view";
 
-// ---- Card preview — tabs for slot grid and example card ----
+// ---- Card preview — tabs for slot grid, current card, and example card ----
 function CardPreview({ config }) {
   const [tab, setTab] = useState("slots");
+
+  const tabs = [["slots", "Available Slots"]];
+  if (config.canvaUrl) tabs.push(["current", "Current Card"]);
+  tabs.push(["example", "Example"]);
 
   return (
     <div style={{ maxWidth: 760, margin: "0 auto" }}>
       <div style={{ display: "flex", gap: 0, marginBottom: 20, borderBottom: "1.5px solid #D8CDB8" }}>
-        {[["slots", "Available Slots"], ["example", "Example"]].map(([k, label]) => (
+        {tabs.map(([k, label]) => (
           <button
             key={k}
             className="ghg-btn"
@@ -384,6 +388,23 @@ function CardPreview({ config }) {
             </div>
           </div>
         </div>
+      )}
+
+      {tab === "current" && config.canvaUrl && (
+        <iframe
+          src={canvaEmbedUrl(config.canvaUrl)}
+          style={{
+            width: "100%",
+            height: 500,
+            border: "1px solid #e0d6c2",
+            borderRadius: 8,
+            boxShadow: "0 24px 60px rgba(33,28,22,.22)",
+            display: "block",
+          }}
+          allowFullScreen
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          title="Current Card"
+        />
       )}
 
       {tab === "example" && (
