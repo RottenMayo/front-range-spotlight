@@ -363,7 +363,7 @@ function CardPreview({ config }) {
             display: "block",
           }}
           allowFullScreen
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          allow="fullscreen"
           title="Current Card"
         />
       )}
@@ -380,7 +380,7 @@ function CardPreview({ config }) {
             display: "block",
           }}
           allowFullScreen
-          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          allow="fullscreen"
           title="Example Card"
         />
       )}
